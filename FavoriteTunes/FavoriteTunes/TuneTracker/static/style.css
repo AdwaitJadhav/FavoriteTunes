@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: rgb(26, 24, 24);
+    margin: 0;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    max-width: 100%;
+    overflow: auto;
+  }
+
+body {
+    text-align: center;
+    font-family:monospace;
+}
+
+.song-list {
+    float:left;
+    text-align: center;
+    width:700px;
+}
+
+input {
+    background-color: rgb(68, 64, 64);
+}
+
+.author-song-count{
+    float: right;
+    text-align:start;
+    margin-top: 30px;
+    margin-right: 140px;
+    width: 450px;
+    background-color: rgb(73, 70, 70);
+    border-radius: 50px;
+    border-style: outset;
+    border-width: 1px;
+}
+
+.author-song-count h2 {
+    margin-left: 65px;
+}
+
+li {
+    list-style-type: none;
+    margin: 30px;
+}
+
+button{
+    background-color: rgb(87, 126, 115);
+    cursor: pointer;
+    border-radius: 30px;
+    padding: 5px;
+    border-style:solid;
+    border-color: rgb(75, 121, 121);
+}
+
+.trash {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border-color: rgb(53, 50, 50);
+    transition: 200ms;
+    border-style:groove;
+    background-color: rgb(68, 64, 64);
+    cursor:pointer;
+}
+
+.trash:hover{
+    background-color: rgb(99, 93, 93);
+}
+
+a {
+    display: inline-block;
+    text-align: center;
+    width: 60%; 
+    height: 40px;
+    border-style:groove ;
+    border-radius:30px;
+    border-width: 4px;
+    border-color: rgb(53, 50, 50);
+    background-color: rgb(68, 64, 64);
+    color: white;
+    line-height: 30px; 
+    text-overflow: ellipsis;
+    transition: 100ms;
+    font-size: small;
+
+}
+
+a:hover {
+    width: 80%;
+    height: 50px;
+    background-color: rgb(99, 93, 93);
+    line-height: 40px;
+}
+
+.add-song-btn {
+    margin-bottom: 10px;
+}
+
+.add-song-form {
+    display: none;
+}
+
+.fa-solid {
+    color: rgb(250, 74, 74);
+    
+}
+
+
+@media only screen and (max-width: 1200px) {
+    body {
+        font-size: 14px;
+    }
+
+    .song-list,
+    .author-song-count {
+        width: 100%; 
+        padding: 0;
+    }
+
+    input {
+        width: calc(100% - 20px);
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        border: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    .song-list,
+    .author-song-count {
+        width: 100%;
+        padding: 0;
+    }
+
+    input {
+        width: calc(100% - 20px);
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        border: none;
+    }
+}

@@ -1,0 +1,16 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Details</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Song Details</h1>
+    <h2>{{ song.title }}</h2>
+    <p>Artist: {{ song.artist.name }}</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore vitae magnam temporibus laboriosam consequuntur repudiandae aspernatur illum? Quis, impedit. Nisi odio laboriosam saepe illo blanditiis aut maiores fuga debitis esse.</p>
+</body>
+</html>

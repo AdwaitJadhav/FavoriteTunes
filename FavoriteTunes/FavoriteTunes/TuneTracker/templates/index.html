@@ -1,0 +1,109 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Songs List</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <main>
+        <h1>Favorite Tunes</h1>
+        <div class="song-list">
+            <!--Search button-->
+            <div class="song-search">
+                <h2>Search Songs</h2>
+                <input type="text" id="search-input" placeholder="Search by song title">
+                <button id="search-btn">Search</button>
+                <ul id="search-results">
+                </ul>
+            </div>
+            <!--Add song button-->
+            <button id="add-song-btn">Add new song</button>
+            <form method="post" class="add-song-form" action="{% url 'add_song' %}"  style="display: block;">
+                {% csrf_token %}
+                <input type="text" name="song_title" placeholder="Enter song title">
+                <select name="artist_name">
+                    {% for artist in artist_list %}
+                        <option value="{{ artist.id }}">{{ artist.name }}</option>
+                    {% endfor %}
+                    <option value="new">Add New Artist</option>
+                </select>
+                <input type="text" name="new_artist" placeholder="Enter new artist" style="display: none;">
+                <button type="submit">Add</button>
+            </form>
+            <!--List of songs-->
+            <h2>Song list</h2>
+            <ul>
+                {% for song in songs_list %}
+                    <li>
+                        <strong><a href="{% url 'song_detail' song_id=song.id %}">{{ song.title }}</a></strong>
+                        <!--delete button-->
+                        <form method="post" action="{% url 'delete_song' song_id=song.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button class="trash" type="submit"><i class="fa-solid fa-trash-can fa-lg"></i></button>
+                        </form>
+                        <br>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!--Top authors list-->
+        <div class="author-song-count">
+            <h2>Top Artists</h2>
+            <ul>
+                {% for artist, song_count in artist_counts.items %}
+                <li>
+                    <strong>{{ artist }}</strong> - Song Count: {{ song_count }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </main>
+</body>
+<!--Javascript-->
+<script>
+    //Display new artist form on new artist selection
+    document.querySelector('select[name="artist_name"]').addEventListener('change', function() {
+        var newArtistInput = document.querySelector('input[name="new_artist"]');
+        if (this.value === 'new') {
+            newArtistInput.style.display = 'block';
+            newArtistInput.setAttribute('required', 'required');
+        } else {
+            newArtistInput.style.display = 'none';
+            newArtistInput.removeAttribute('required');
+        }
+    });
+
+    //Display add song form on add button click
+    document.addEventListener('DOMContentLoaded', function() {
+    var addSongForm = document.querySelector('.add-song-form');
+    addSongForm.style.display = 'none';
+
+        document.getElementById('add-song-btn').addEventListener('click', function() {
+            if (addSongForm.style.display === 'none') {
+                addSongForm.style.display = 'block';
+            } else {
+                addSongForm.style.display = 'none';
+            }
+        });
+    });
+
+    //Search function
+    document.getElementById('search-btn').addEventListener('click', function() {
+            var input = document.getElementById('search-input').value.toLowerCase();
+            var songsList = document.querySelectorAll('.song-list ul li');
+
+            songsList.forEach(function(song) {
+                var title = song.querySelector('strong a').innerText.toLowerCase();
+                if (title.indexOf(input) > -1) {
+                    song.style.display = 'block';
+                } else {
+                    song.style.display = 'none';
+                }
+            });
+        });
+</script>
+</html>
