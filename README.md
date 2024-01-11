@@ -1,7 +1,6 @@
-FavoriteTunes
 Make sure you have python and django installed on the machine
-download the zip of the repository and extract it
-on the command line travel to the extracted folder 'FavoriteTunes' and then again go inside the subfolder 'FavoriteTunes', make sure there is a manage.py file located there
+download the zip of the repository and extract it on your machine.
+On the command line travel to the extracted folder 'FavoriteTunes' and then again go inside the subfolder 'FavoriteTunes', make sure there is a manage.py file located there.\n
 run the following command
 py manage.py runserver
 or
